@@ -135,6 +135,9 @@ export IP=$( curl -s https://ipinfo.io/ip/ )
 # // Set Time To Kuala_Lumpur / GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
+# // cek old script
+if [[ -r /etc/xray/domain ]]; then
+
 echo -e "${INFO} Having Script Detected !"
 echo -e "${INFO} If You Replacing Script, All Client Data On This VPS Will Be Cleanup !"
 read -p "Are You Sure Wanna Replace Script ? (Y/N) " josdong
