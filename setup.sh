@@ -135,9 +135,6 @@ export IP=$( curl -s https://ipinfo.io/ip/ )
 # // Set Time To Kuala_Lumpur / GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
-# // cek old script
-if [[ -r /etc/xray/domain ]]; then
-
 echo -e "${INFO} Having Script Detected !"
 echo -e "${INFO} If You Replacing Script, All Client Data On This VPS Will Be Cleanup !"
 read -p "Are You Sure Wanna Replace Script ? (Y/N) " josdong
@@ -212,11 +209,60 @@ mkdir -p /etc/xray
 mkdir -p /usr/local/etc/xray
 
 #rm -fr /etc/xray/domain
-# // String / Request Data
-mkdir -p /var/lib/scrz-prem >/dev/null 2>&1
-echo "IP=$host" >> /var/lib/scrz-prem/ipvps.conf
-echo $host > /etc/xray/domain
-wget https://raw.githubusercontent.com/Malayaacx01/Blueblue/main/cf.sh && chmod +x cf.sh && ./cf.sh
+#Nama penyedia script
+echo -e "\e[1;32m════════════════════════════════════════════════════════════\e[0m"
+echo ""
+echo -e "   \e[1;32mPlease enter the name of Provider for Script."
+read -p "   Name : " nm
+echo $nm > /root/provided
+echo ""
+#Email domain
+echo -e "\e[1;32m════════════════════════════════════════════════════════════\e[0m"
+echo -e ""
+echo -e "   \e[1;32mPlease enter your email Domain/Cloudflare."
+echo -e "   \e[1;31m(Press ENTER for default email)\e[0m"
+read -p "   Email : " email
+default=${default_email}
+new_email=$email
+if [[ $email == "" ]]; then
+sts=$default_email
+else
+sts=$new_email
+fi
+# email
+mkdir -p /usr/local/etc/xray/
+touch /usr/local/etc/xray/email
+echo $sts > /usr/local/etc/xray/email
+echo ""
+echo -e "\e[1;32m════════════════════════════════════════════════════════════\e[0m"
+echo ""
+echo -e "   .----------------------------------."
+echo -e "   |\e[1;32mPlease select a domain type below \e[0m|"
+echo -e "   '----------------------------------'"
+echo -e "     \e[1;32m1)\e[0m Enter your Subdomain"
+echo -e "     \e[1;32m2)\e[0m Use a random Subdomain"
+echo -e "   ------------------------------------"
+read -p "   Please select numbers 1-2 or Any Button(Random) : " host
+echo ""
+if [[ $host == "1" ]]; then
+echo -e "   \e[1;32mPlease enter your subdomain "
+read -p "   Subdomain: " host1
+echo "IP=$host1" >> /var/lib/scrz-prem/ipvps.conf
+echo $host1 > /root/domain
+echo ""
+elif [[ $host == "2" ]]; then
+#install cf
+wget https://raw.githubusercontent.com/${GitUser}/Blueblue/main/cf.sh && chmod +x cf.sh && ./cf.sh
+rm -f /root/cf.sh
+clear
+else
+echo -e "Random Subdomain/Domain is used"
+wget https://raw.githubusercontent.com/${GitUser}/Blueblue/main/cf.sh && chmod +x cf.sh && ./cf.sh
+rm -f /root/cf.sh
+clear
+fi
+echo ""
+clear
 
 sleep 2
 
@@ -405,14 +451,14 @@ git clone https://github.com/NevermoreSSH/limit.git /root/limit/ &> /dev/null
 babu=$(cat /etc/.geovpn/license.key)
 echo -e "$babu $IP $Masa_Laku_License_Berlaku_Sampai" >> /root/limit/limit.txt
 cd /root/limit
-    git config --global user.email "zulfadlizulkifli10@yahoo.com" &> /dev/null
-    git config --global user.name "Malayaacx01" &> /dev/null
+    git config --global user.email "pribadi.no99@gmail.com" &> /dev/null
+    git config --global user.name "NevermoreSSH" &> /dev/null
     rm -fr .git &> /dev/null
     git init &> /dev/null
     git add . &> /dev/null
     git commit -m m &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/Malayaacx01/limit
+    git remote add origin https://github.com/NevermoreSSH/limit
     git push -f https://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@github.com/kenDevXD/limit.git &> /dev/null
 cd
 echo "1.1" >> /home/.ver
