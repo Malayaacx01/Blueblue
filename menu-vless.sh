@@ -203,7 +203,7 @@ echo "==============================="
 echo "Username  : $user"
 echo "Expired   : $exp"
 echo "==============================="
-echo "Script Mod By NevermoreSSH"
+echo "Script By Malayaacx01-VPN"
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
     
