@@ -1,3 +1,77 @@
+#!/bin/bash
+#wget https://github.com/${GitUser}/
+GitUser="Malayaacx01"
+# Color Validation
+Lred='\e[1;91m'
+Lgreen='\e[92m'
+Lyellow='\e[93m'
+green='\e[32m'
+RED='\033[0;31m'
+NC='\033[0m'
+BGBLUE='\e[1;44m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0;37m'
+# ===================
+echo ''
+clear
+echo ''
+echo "                                                              "
+echo -e "$Lyellow                ⚡ PREMIUM BY MALAYAACX01 - VPN SCRIPT ⚡"$NC
+echo -e "$green.........................................................."$NC
+echo -e "$Lyellow              ✨ Autoscript By Malayaacx01-VPN 🔥"$NC
+echo -e "$Lyellow                    🆔CONTACT TELEGRAM"$NC
+echo -e "$Lyellow                       @malayaacx_2601"$NC
+echo -e "$green.........................................................."$NC
+echo ''
+echo -e "$Lyellow                       Wait 6 Seconds!"$NC
+echo -e "$green.........................................................."$NC
+sleep 6
+clear
+if [ "${EUID}" -ne 0 ]; then
+		echo "You need to run this script as root"
+		exit 1
+fi
+if [ "$(systemd-detect-virt)" == "openvz" ]; then
+		echo "OpenVZ is not supported"
+		exit 1
+fi
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+#IZIN SCRIPT
+MYIP=$(curl -sS ipv4.icanhazip.com)
+MYIP=$(curl -s ipinfo.io/ip )
+MYIP=$(curl -sS ipv4.icanhazip.com)
+MYIP=$(curl -sS ifconfig.me )
+echo -e "\e[32mloading...\e[0m"
+clear
+# Insert Password
+Password=Malayaacx01VPN
+# Execute
+read -p "Please Insert The License Key : " Passwordnya
+if [ $Password = $Passwordnya ]; then
+clear
+echo -e ""
+echo -e "${green}Permission Accepted...${NC}"
+echo ""
+echo "Thanks For Using Malayaacx01 - VPN Script Modded By Malayaacx01-VPN"
+echo ""
+sleep 3
+else
+clear
+echo -e "${red}Permission Denied!${NC}";
+echo -e "${red}Please Insert The Correct License Key !${NC}"
+echo ""
+echo -e "Please Contact ${green}Admin${NC}"
+echo -e "Telegram : t.me/malayaacx_2601"
+rm -f setup.sh
+exit 0
+fi
+clear
+
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 
 # // Root Checking
